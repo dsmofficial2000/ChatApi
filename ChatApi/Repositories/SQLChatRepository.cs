@@ -6,17 +6,22 @@ namespace ChatApi.Repositories
 {
     public class SQLChatRepository : IchatmessageReoisitory
     {
-        private readonly ApplicationDbContext _dbcontext;
+        private readonly ApplicationDbContext dbcontext;
 
         public SQLChatRepository(ApplicationDbContext dbContext)
         {
-            this._dbcontext = dbContext;
+            this.dbcontext = dbContext;
         }
         public async Task<ChatMessage> CreateAsync(ChatMessage chatMessage)
         {
-            await _dbcontext.AddAsync(chatMessage);
-            await _dbcontext.SaveChangesAsync();
+            await dbcontext.AddAsync(chatMessage);
+            await dbcontext.SaveChangesAsync();
             return chatMessage;
+        }
+
+        public async Task<List<ChatMessage>> GetallAsync()
+        {
+            return await dbcontext.chatMessages.ToListAsync();
         }
     }
 }

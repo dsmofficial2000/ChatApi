@@ -10,8 +10,8 @@ namespace ChatApi.Mappings
         {
             //chat Controller
             CreateMap<AddChatRequestDto, ChatMessage>().ReverseMap();
+            
             CreateMap<ChatMessage, ChatDto>().ReverseMap();
-            //CreateMap<Difficulty, DifficultyDto>().ReverseMap();
             CreateMap<UpdateChatRequestDto, ChatMessage>().ReverseMap();
         }
     }

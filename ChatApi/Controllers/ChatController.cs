@@ -3,6 +3,7 @@ using ChatApi.Model.Domain;
 using ChatApi.Model.DTO;
 using ChatApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace ChatApi.Controllers
 {
@@ -19,8 +20,6 @@ namespace ChatApi.Controllers
             this.chatrepository = chatmessage;
         }
 
-        // CREATE Walk
-        // POST: /api/walks
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddChatRequestDto addChatRequestDto)
         {
@@ -31,6 +30,13 @@ namespace ChatApi.Controllers
 
             // Map Domain model to DTO
             return Ok(mapper.Map<ChatDto>(chatDomainModel));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var ChatDomain = await chatrepository.GetallAsync();
+            return Ok(mapper.Map<List<ChatDto>>(ChatDomain));
         }
 
     }

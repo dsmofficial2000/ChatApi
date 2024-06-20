@@ -24,8 +24,11 @@ namespace ChatApi.Migrations
 
             modelBuilder.Entity("ChatApi.Model.Domain.ChatMessage", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("Message")
                         .IsRequired()
