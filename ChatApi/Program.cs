@@ -1,4 +1,6 @@
 using ChatApi.Data;
+using ChatApi.Mappings;
+using ChatApi.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles));
+
+
+builder.Services.AddScoped<IchatmessageReoisitory, SQLChatRepository>();
 
 var app = builder.Build();
 

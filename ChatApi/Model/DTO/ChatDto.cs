@@ -1,6 +1,6 @@
-﻿namespace ChatApi.Model.Domain
+﻿namespace ChatApi.Model.DTO
 {
-    public class ChatMessage
+    public class ChatDto
     {
         public Guid Id { get; set; }
         public string Sender { get; set; }
